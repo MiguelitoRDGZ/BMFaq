@@ -3,831 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern FAQ | Your Brand</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Brand Management | Complaint Section</title>
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f5f7ff;
-            color: var(--dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-        }
-        
-        .container {
+            color: #333;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 100px 0;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-        }
-        
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 15s infinite linear;
-        }
-        
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            top: -50px;
-            left: -50px;
-            animation-delay: 0s;
-        }
-        
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            bottom: -30px;
-            right: 20%;
-            animation-delay: 2s;
-            animation-direction: reverse;
-        }
-        
-        .shape-3 {
-            width: 150px;
-            height: 150px;
-            top: 30%;
-            right: -30px;
-            animation-delay: 4s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-20px) rotate(360deg);
-            }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .hero-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease-out;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 0.8s ease-out 0.2s forwards;
-            opacity: 0;
-        }
-        
-        .search-box {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease-out 0.4s forwards;
-            opacity: 0;
-        }
-        
-        .search-box input {
-            flex: 1;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 50px 0 0 50px;
-            font-size: 1rem;
-        }
-        
-        .search-box button {
-            padding: 0 25px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 0 50px 50px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .search-box button:hover {
-            background: #3a7bd5;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Categories Section */
-        .categories {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 2rem;
-            color: var(--dark);
-        }
-        
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .category-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            color: var(--dark);
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .category-card::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            transition: all 0.3s ease;
-            z-index: -1;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-        
-        .category-card:hover::before {
-            height: 100%;
-        }
-        
-        .category-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            background: rgba(67, 97, 238, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            transition: all 0.3s ease;
-        }
-        
-        .category-card:hover .category-icon {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        
-        .category-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        .category-card p {
-            color: var(--gray);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .category-card:hover p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 80px 0;
-            background: #f5f7ff;
-        }
-        
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            background: white;
-        }
-        
-        .faq-question {
-            width: 100%;
             padding: 20px;
-            text-align: left;
-            border: none;
-            background: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background-color: #f9f9f9;
         }
         
-        .faq-question:hover {
-            background: #f8f9fa;
-        }
-        
-        .faq-question span {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .faq-question i {
-            transition: all 0.3s ease;
-        }
-        
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-        }
-        
-        .faq-answer p {
-            padding: 0 20px 20px;
-            color: var(--gray);
-        }
-
-        /* Contact CTA Section */
-        .contact-cta {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        header {
+            background-color: var(--primary);
             color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .cta-content {
-            max-width: 900px;
-            margin: 0 auto;
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin-top: 20px;
+        }
+        
+        .section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .team-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
         }
         
-        .cta-text h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .cta-text p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn i {
-            margin-right: 8px;
-        }
-        
-        .btn-primary {
-            background: white;
-            color: var(--primary);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* Footer Section */
-        .site-footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .footer-brand p {
-            opacity: 0.7;
-            margin-bottom: 20px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .footer-links h4 {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-links h4::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--primary);
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .footer-newsletter h4 {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-newsletter h4::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--primary);
-        }
-        
-        .footer-newsletter p {
-            opacity: 0.7;
-            margin-bottom: 15px;
-        }
-        
-        .footer-newsletter form {
-            display: flex;
-        }
-        
-        .footer-newsletter input {
-            flex: 1;
+        .team-member {
+            background-color: var(--light);
             padding: 10px 15px;
-            border: none;
-            border-radius: 4px 0 0 4px;
+            border-radius: 5px;
+            flex: 1 0 200px;
         }
         
-        .footer-newsletter button {
-            padding: 0 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .team-member h4 {
+            margin: 0 0 5px 0;
+            color: var(--dark);
         }
         
-        .footer-newsletter button:hover {
-            background: var(--accent);
+        .team-member p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 14px;
         }
         
-        .footer-bottom {
+        .note {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        footer {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 14px;
         }
         
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .team-member {
+                flex: 1 0 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-background">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">How can we help?</h1>
-                <p class="hero-subtitle">Find answers to common questions about our products and services</p>
-                <div class="search-box">
-                    <input type="text" placeholder="Search FAQs...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </div>
+    <header>
+        <h1>Brand Management | Complaint Section</h1>
+        <p>Frequently Asked Questions and Procedures</p>
     </header>
-
-    <!-- Categories Section -->
-    <section class="categories">
-        <div class="container">
-            <h2 class="section-title">Browse by Category</h2>
-            <div class="category-grid">
-                <a href="#account" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>Account</h3>
-                    <p>Login, registration, and profile settings</p>
-                </a>
-                <a href="#billing" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <h3>Billing</h3>
-                    <p>Payments, invoices, and subscriptions</p>
-                </a>
-                <a href="#features" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Features</h3>
-                    <p>How to use our platform</p>
-                </a>
-                <a href="#troubleshooting" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Troubleshooting</h3>
-                    <p>Fix common issues</p>
-                </a>
+    
+    <div class="section">
+        <h2>Rules & Guidelines</h2>
+        
+        <h3>Start of Shift</h3>
+        <ul>
+            <li>The first <strong>1.5 to 2 hours</strong> of your shift should be dedicated to:
+                <ul>
+                    <li>Checking your <strong>agenda</strong></li>
+                    <li>Reviewing <strong>emails</strong></li>
+                    <li>Responding to <strong>customer SMS</strong></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>Personal Time Usage</h3>
+        <ul>
+            <li>You are allotted <strong>15 minutes per day</strong> for personal time</li>
+            <li>If you exceed this limit, notify your <strong>Tier 2/3 or Manager</strong></li>
+        </ul>
+        
+        <h3>Leaving the Floor</h3>
+        <ul>
+            <li>If you need to step away for a <strong>personal call</strong> or any other reason, inform your <strong>Tier 2/3 or Manager</strong></li>
+        </ul>
+        
+        <h3>Time Off Requests</h3>
+        <ul>
+            <li>Submit time-off requests through <strong>SYCO</strong></li>
+            <li>Notify your <strong>Manager</strong> with the reason for approval</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Procedures</h2>
+        
+        <h3>Push to Cancel</h3>
+        <ul>
+            <li>If the customer agrees to an <strong>elevated refund</strong>, submit the request and change the status to <strong>"Pending Cancellation"</strong></li>
+        </ul>
+        
+        <h3>Settlement & Release (S&R)</h3>
+        <ul>
+            <li>If the customer agrees to a <strong>partial settlement</strong> to cancel the policy:
+                <ul>
+                    <li>Submit the request in the <strong>Retentions | BM Department: S&R Request Sheet</strong></li>
+                    <li>Ensure the request is placed in the <strong>correct section and month</strong></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>Account Pitches</h3>
+        <ul>
+            <li>These apply <strong>only to the claim with the current issue</strong> (sometimes for the next claim)</li>
+            <li>Make the process <strong>easier and more lenient</strong> for the customer</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Line of Command</h2>
+        
+        <div class="team-list">
+            <div class="team-member">
+                <h4>Manager</h4>
+                <p>Nino Green</p>
             </div>
         </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>How do I reset my password?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>To reset your password, go to the login page and click on "Forgot Password". Enter your email address and we'll send you a link to reset your password. Make sure to check your spam folder if you don't see the email in your inbox.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What payment methods do you accept?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>We accept all major credit cards including Visa, MasterCard, American Express, and Discover. We also support payments through PayPal and Apple Pay for your convenience.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Can I cancel my subscription anytime?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes, you can cancel your subscription at any time. There are no cancellation fees, and you'll continue to have access to the service until the end of your current billing period.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>How do I contact customer support?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Our customer support team is available 24/7. You can reach us by email at support@yourcompany.com, through the live chat feature in our app, or by calling +1 (800) 123-4567.</p>
-                    </div>
-                </div>
+        
+        <h3>Tier 2</h3>
+        <div class="team-list">
+            <div class="team-member">
+                <p>Anthony Smith</p>
+            </div>
+            <div class="team-member">
+                <p>Eddy Sanchez</p>
+            </div>
+            <div class="team-member">
+                <p>Mike Rodriguez</p>
             </div>
         </div>
-    </section>
-
-    <!-- Contact CTA Section -->
-    <section class="contact-cta">
-        <div class="container">
-            <div class="cta-content">
-                <div class="cta-text">
-                    <h2>Still have questions?</h2>
-                    <p>Our support team is ready to help you with any questions you might have.</p>
-                </div>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Email Us
-                    </a>
-                    <a href="#" class="btn btn-secondary">
-                        <i class="fas fa-comment-dots"></i> Live Chat
-                    </a>
-                </div>
+        
+        <h3>Tier 1</h3>
+        <div class="team-list">
+            <div class="team-member">
+                <p>Alex Collado</p>
+            </div>
+            <div class="team-member">
+                <p>Josh Kim</p>
+            </div>
+            <div class="team-member">
+                <p>Nigel Liloy</p>
+            </div>
+            <div class="team-member">
+                <p>Jackie Flores</p>
+            </div>
+            <div class="team-member">
+                <p>Emi Estrella</p>
             </div>
         </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Your Brand</h3>
-                    <p>Making your life easier with our solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Community</a></li>
-                        <li><a href="#">Status</a></li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe to get updates and news.</p>
-                    <form>
-                        <input type="email" placeholder="Your email">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Your Brand. All rights reserved.</p>
-            </div>
+    </div>
+    
+    <div class="section">
+        <h2>Assistance Request</h2>
+        
+        <h3>Escalation Process</h3>
+        <ol>
+            <li>First, reach out to a <strong>Tier 2</strong> team member</li>
+            <li>If the request cannot be resolved, it will be escalated to the <strong>Manager</strong></li>
+        </ol>
+        
+        <div class="note">
+            <strong>Note:</strong> For further questions, consult your Tier 2 or Manager.
         </div>
+    </div>
+    
+    <footer>
+        <p>Brand Management Complaint Section &copy; 2023 | Last updated: November 2023</p>
     </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- JavaScript -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-        // FAQ Accordion Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    // Close all other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item && otherItem.classList.contains('active')) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
-            });
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Back to top button
-            const backToTopButton = document.querySelector('.back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Initialize ScrollReveal
-            ScrollReveal().reveal('.category-card', {
-                delay: 200,
-                distance: '20px',
-                origin: 'bottom',
-                interval: 100,
-                easing: 'cubic-bezier(0.5, 0, 0, 1)',
-                reset: true
-            });
-            
-            ScrollReveal().reveal('.section-title', {
-                delay: 100,
-                distance: '20px',
-                origin: 'top',
-                easing: 'ease-out',
-                reset: true
-            });
-            
-            ScrollReveal().reveal('.faq-item', {
-                delay: 100,
-                distance: '20px',
-                origin: 'bottom',
-                interval: 100,
-                easing: 'ease-out',
-                reset: true
-            });
-            
-            ScrollReveal().reveal('.cta-content > *', {
-                delay: 100,
-                distance: '20px',
-                origin: 'bottom',
-                interval: 100,
-                easing: 'ease-out',
-                reset: true
-            });
-        });
-    </script>
 </body>
 </html>
