@@ -3,41 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brand Management | Complaint Section Portal</title>
+    <title>Brand Management Portal | Complaint Section</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0056b3;
-            --primary-dark: #003d7a;
-            --secondary: #00a8e8;
-            --accent: #ff6b35;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
+            /* Light Theme */
+            --primary-light: #2563eb;
+            --primary-dark-light: #1e40af;
+            --secondary-light: #3b82f6;
+            --accent-light: #ef4444;
+            --background-light: #f8fafc;
+            --surface-light: #ffffff;
+            --text-light: #1e293b;
+            --text-secondary-light: #64748b;
+            --border-light: #e2e8f0;
+            --success-light: #10b981;
+            --warning-light: #f59e0b;
+            --danger-light: #dc2626;
+            
+            /* Dark Theme */
+            --primary-dark: #60a5fa;
+            --primary-dark-dark: #93c5fd;
+            --secondary-dark: #3b82f6;
+            --accent-dark: #f87171;
+            --background-dark: #0f172a;
+            --surface-dark: #1e293b;
+            --text-dark: #f8fafc;
+            --text-secondary-dark: #94a3b8;
+            --border-dark: #334155;
+            --success-dark: #34d399;
+            --warning-dark: #fbbf24;
+            --danger-dark: #f87171;
+            
+            /* Common */
             --border-radius: 8px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --transition: all 0.3s ease;
         }
         
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text);
+            transition: var(--transition);
             margin: 0;
             padding: 0;
         }
         
-        body {
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f7fa;
-            min-height: 100vh;
+        body.light {
+            --primary: var(--primary-light);
+            --primary-dark: var(--primary-dark-light);
+            --secondary: var(--secondary-light);
+            --accent: var(--accent-light);
+            --background: var(--background-light);
+            --surface: var(--surface-light);
+            --text: var(--text-light);
+            --text-secondary: var(--text-secondary-light);
+            --border: var(--border-light);
+            --success: var(--success-light);
+            --warning: var(--warning-light);
+            --danger: var(--danger-light);
+        }
+        
+        body.dark {
+            --primary: var(--primary-dark);
+            --primary-dark: var(--primary-dark-dark);
+            --secondary: var(--secondary-dark);
+            --accent: var(--accent-dark);
+            --background: var(--background-dark);
+            --surface: var(--surface-dark);
+            --text: var(--text-dark);
+            --text-secondary: var(--text-secondary-dark);
+            --border: var(--border-dark);
+            --success: var(--success-dark);
+            --warning: var(--warning-dark);
+            --danger: var(--danger-dark);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -45,7 +90,7 @@
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 30px 20px;
+            padding: 25px 30px;
             border-radius: var(--border-radius);
             margin-bottom: 30px;
             box-shadow: var(--box-shadow);
@@ -53,32 +98,9 @@
             overflow: hidden;
         }
         
-        header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: translate(30%, -30%);
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            right: -50px;
-            width: 150px;
-            height: 150px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-        }
-        
         .header-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -86,70 +108,62 @@
             gap: 20px;
         }
         
-        h1 {
+        .header-text h1 {
             margin: 0;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
         }
         
-        .header-meta {
+        .header-text p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+        
+        .header-actions {
             display: flex;
             gap: 15px;
             align-items: center;
         }
         
-        .last-updated {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .search-box {
-            flex: 1;
-            max-width: 400px;
-            min-width: 250px;
-            position: relative;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 10px 15px 10px 40px;
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
             border: none;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
         }
         
-        .search-box input:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.3);
-            background: white;
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
         
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray);
+        .last-updated {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
         }
         
         .main-content {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 25px;
         }
         
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
         }
         
         .sidebar {
-            background: white;
+            background: var(--surface);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             padding: 20px;
@@ -158,87 +172,72 @@
             top: 20px;
         }
         
-        .sidebar h3 {
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+        
+        .sidebar-section h3 {
             color: var(--primary);
             margin-bottom: 15px;
             padding-bottom: 8px;
-            border-bottom: 2px solid var(--secondary);
-            font-size: 1.2rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .nav-menu {
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
         
         .nav-item {
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
         
         .nav-link {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 10px 15px;
-            color: var(--dark);
+            color: var(--text);
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             transition: var(--transition);
             font-weight: 500;
+            gap: 10px;
         }
         
         .nav-link:hover, .nav-link.active {
-            background: rgba(0, 168, 232, 0.1);
+            background: rgba(var(--primary-rgb), 0.1);
             color: var(--primary);
         }
         
         .nav-link i {
-            margin-right: 10px;
             width: 20px;
             text-align: center;
         }
         
-        .content-area {
+        .quick-actions {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-        }
-        
-        .section {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px;
-            position: relative;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            color: var(--primary);
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin: 0;
-        }
-        
-        .section-actions {
-            display: flex;
             gap: 10px;
         }
         
         .btn {
-            padding: 8px 15px;
+            padding: 10px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             font-size: 0.9rem;
+            text-decoration: none;
         }
         
         .btn-primary {
@@ -248,119 +247,189 @@
         
         .btn-primary:hover {
             background: var(--primary-dark);
+            transform: translateY(-2px);
         }
         
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--gray);
-            color: var(--dark);
-        }
-        
-        .btn-outline:hover {
-            border-color: var(--primary);
+        .btn-secondary {
+            background: var(--surface);
             color: var(--primary);
+            border: 1px solid var(--border);
         }
         
-        .accordion {
-            margin-top: 15px;
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(var(--primary-rgb), 0.05);
         }
         
-        .accordion-item {
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            overflow: hidden;
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
         }
         
-        .accordion-header {
-            padding: 15px 20px;
-            background: var(--light);
-            cursor: pointer;
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .section {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+        }
+        
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .rule-card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border: 1px solid var(--border);
             transition: var(--transition);
         }
         
-        .accordion-header:hover {
-            background: #e9ecef;
+        .rule-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
         }
         
-        .accordion-header i {
+        .rule-card h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rule-card h4 i {
+            color: var(--accent);
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .status-card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            border: 1px solid var(--border);
             transition: var(--transition);
         }
         
-        .accordion-content {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+        .status-card h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .accordion-item.active .accordion-header {
-            background: rgba(0, 168, 232, 0.1);
+        .status-card.pending h4 {
+            color: var(--warning);
+        }
+        
+        .status-card.loss h4 {
+            color: var(--danger);
+        }
+        
+        .status-card.success h4 {
+            color: var(--success);
+        }
+        
+        .status-card.removed h4 {
             color: var(--primary);
         }
         
-        .accordion-item.active .accordion-header i {
-            transform: rotate(180deg);
+        .status-card.reevaluate h4 {
+            color: var(--accent);
         }
         
-        .accordion-item.active .accordion-content {
-            padding: 20px;
-            max-height: 1000px;
-        }
-        
-        ul {
-            padding-left: 20px;
-        }
-        
-        li {
-            margin-bottom: 10px;
-            position: relative;
-        }
-        
-        li::before {
-            content: '•';
-            color: var(--secondary);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+        .status-card.utr h4 {
+            color: var(--text-secondary);
         }
         
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
         
         .team-card {
-            background: var(--light);
+            background: var(--surface);
             border-radius: var(--border-radius);
             padding: 20px;
             text-align: center;
             transition: var(--transition);
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border);
         }
         
         .team-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
         }
         
         .team-avatar {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: var(--primary);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             margin: 0 auto 15px;
         }
@@ -368,52 +437,19 @@
         .team-name {
             font-weight: 600;
             margin-bottom: 5px;
-            color: var(--dark);
+            color: var(--text);
         }
         
         .team-role {
             color: var(--primary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             margin-bottom: 10px;
         }
         
         .team-contact {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-        
-        .process-steps {
-            counter-reset: step-counter;
-            margin-top: 20px;
-        }
-        
-        .process-step {
-            position: relative;
-            padding-left: 60px;
-            margin-bottom: 25px;
-        }
-        
-        .process-step::before {
-            counter-increment: step-counter;
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .process-step h4 {
-            margin-bottom: 8px;
-            color: var(--primary-dark);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
         }
         
         .alert {
@@ -423,30 +459,75 @@
             display: flex;
             align-items: flex-start;
             gap: 15px;
+            background: rgba(var(--primary-rgb), 0.1);
+            border-left: 4px solid var(--primary);
         }
         
         .alert i {
             font-size: 1.2rem;
             margin-top: 2px;
-        }
-        
-        .alert-info {
-            background: rgba(0, 168, 232, 0.1);
-            border-left: 4px solid var(--secondary);
+            color: var(--primary);
         }
         
         .alert-warning {
-            background: rgba(255, 193, 7, 0.1);
+            background: rgba(var(--warning-rgb), 0.1);
             border-left: 4px solid var(--warning);
+        }
+        
+        .alert-warning i {
+            color: var(--warning);
+        }
+        
+        .alert-danger {
+            background: rgba(var(--danger-rgb), 0.1);
+            border-left: 4px solid var(--danger);
+        }
+        
+        .alert-danger i {
+            color: var(--danger);
+        }
+        
+        .process-steps {
+            counter-reset: step-counter;
+            margin-top: 20px;
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 25px;
+        }
+        
+        .process-step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .process-step h4 {
+            margin-bottom: 8px;
+            color: var(--primary);
         }
         
         footer {
             text-align: center;
             margin-top: 50px;
             padding: 20px;
-            color: var(--gray);
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid var(--border);
         }
         
         .quick-links {
@@ -454,12 +535,17 @@
             justify-content: center;
             gap: 20px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
         .quick-links a {
-            color: var(--gray);
+            color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .quick-links a:hover {
@@ -472,9 +558,9 @@
                 align-items: flex-start;
             }
             
-            .search-box {
+            .header-actions {
                 width: 100%;
-                max-width: 100%;
+                justify-content: space-between;
             }
             
             h1 {
@@ -482,143 +568,114 @@
             }
             
             .section {
-                padding: 20px 15px;
+                padding: 20px;
             }
             
-            .team-grid {
+            .card-grid, .status-grid, .team-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-<body>
+<body class="light">
     <div class="container">
         <header>
             <div class="header-content">
-                <div>
-                    <h1>Brand Management Complaint Portal</h1>
-                    <p>Policies, Procedures & Team Resources</p>
+                <div class="header-text">
+                    <h1>Brand Management Portal</h1>
+                    <p>Complaint Section Resources & Procedures</p>
                 </div>
-                <div class="header-meta">
-                    <span class="last-updated"><i class="fas fa-sync-alt"></i> Updated: Nov 2023</span>
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search policies...">
-                    </div>
+                <div class="header-actions">
+                    <span class="last-updated"><i class="fas fa-sync-alt"></i> Updated: Jul 2025</span>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </div>
         </header>
         
         <div class="main-content">
             <aside class="sidebar">
-                <h3><i class="fas fa-bars"></i> Navigation</h3>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="#rules" class="nav-link active"><i class="fas fa-clipboard-list"></i> Rules & Guidelines</a></li>
-                    <li class="nav-item"><a href="#procedures" class="nav-link"><i class="fas fa-tasks"></i> Procedures</a></li>
-                    <li class="nav-item"><a href="#team" class="nav-link"><i class="fas fa-users"></i> Team Structure</a></li>
-                    <li class="nav-item"><a href="#assistance" class="nav-link"><i class="fas fa-hands-helping"></i> Assistance</a></li>
-                    <li class="nav-item"><a href="#resources" class="nav-link"><i class="fas fa-file-alt"></i> Resources</a></li>
-                    <li class="nav-item"><a href="#updates" class="nav-link"><i class="fas fa-bullhorn"></i> Updates</a></li>
-                </ul>
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-bars"></i> Navigation</h3>
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="#rules" class="nav-link active"><i class="fas fa-clipboard-check"></i> Rules</a></li>
+                        <li class="nav-item"><a href="#procedures" class="nav-link"><i class="fas fa-tasks"></i> Procedures</a></li>
+                        <li class="nav-item"><a href="#agenda-statuses" class="nav-link"><i class="fas fa-list-ul"></i> Agenda Statuses</a></li>
+                        <li class="nav-item"><a href="#team" class="nav-link"><i class="fas fa-users"></i> Team Structure</a></li>
+                        <li class="nav-item"><a href="#assistance" class="nav-link"><i class="fas fa-question-circle"></i> Assistance</a></li>
+                    </ul>
+                </div>
                 
-                <h3 style="margin-top: 30px;"><i class="fas fa-clock"></i> Quick Actions</h3>
-                <button class="btn btn-primary" style="width: 100%; margin-bottom: 10px;">
-                    <i class="fas fa-file-signature"></i> S&R Request
-                </button>
-                <button class="btn btn-outline" style="width: 100%;">
-                    <i class="fas fa-calendar-alt"></i> Time Off Request
-                </button>
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                    <div class="quick-actions">
+                        <a href="https://www.libertyhomeguard.com/systemcontrol/admin/timeoff/manage" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-calendar-plus"></i> Time Off Request
+                        </a>
+                        <a href="https://docs.google.com/spreadsheets/d/1fnwL1MCdjLc7EsQxcdWEFxjYiIAPEMhRlcWEjr0lEaA/edit?gid=895634702#gid=895634702" class="btn btn-secondary" target="_blank">
+                            <i class="fas fa-file-signature"></i> S&R Request Sheet
+                        </a>
+                        <a href="https://docs.google.com/spreadsheets/d/1qGQdx-9HP9T3QJBVxNm7-IYAs3-KHLVHmAboJ0C6lJM/edit?gid=0#gid=0" class="btn btn-secondary" target="_blank">
+                            <i class="fas fa-clipboard-list"></i> Agenda
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-info-circle"></i> Quick Info</h3>
+                    <div class="card">
+                        <h3>Daily Calls Goal</h3>
+                        <p><strong>Minimum:</strong> 15 calls per day</p>
+                        <p>Track your progress in the AWS</p>
+                    </div>
+                </div>
             </aside>
             
             <main class="content-area">
                 <section id="rules" class="section">
                     <div class="section-header">
-                        <h2><i class="fas fa-clipboard-list"></i> Rules & Guidelines</h2>
+                        <h2><i class="fas fa-clipboard-check"></i> Rules & Guidelines</h2>
                         <div class="section-actions">
-                            <button class="btn btn-outline"><i class="fas fa-download"></i> PDF</button>
-                            <button class="btn btn-outline"><i class="fas fa-print"></i> Print</button>
+                            <button class="btn btn-secondary btn-sm"><i class="fas fa-download"></i> PDF</button>
+                            <button class="btn btn-secondary btn-sm"><i class="fas fa-print"></i> Print</button>
                         </div>
                     </div>
                     
-                    <div class="accordion">
-                        <div class="accordion-item active">
-                            <div class="accordion-header">
-                                <span>Start of Shift Protocol</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li>The first <strong>1.5 to 2 hours</strong> of your shift is dedicated to:
-                                        <ul>
-                                            <li>Reviewing your daily <strong>agenda</strong></li>
-                                            <li>Processing all <strong>customer emails</strong></li>
-                                            <li>Responding to <strong>SMS communications</strong></li>
-                                        </ul>
-                                    </li>
-                                    <li>Prioritize urgent customer messages flagged with <span style="color: var(--danger);">High Priority</span> tags</li>
-                                </ul>
-                            </div>
+                    <div class="card-grid">
+                        <div class="rule-card">
+                            <h4><i class="fas fa-clock"></i> Start of Shift</h4>
+                            <p>The first <strong>1.5 to 2 hours</strong> of your shift is dedicated to checking your agenda, emails, and SMS that customers have sent to you.</p>
                         </div>
                         
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Personal Time Management</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li><strong>15 minutes total</strong> allocated for personal time per shift</li>
-                                    <li>Track usage in <strong>SYCO Time Tracker</strong></li>
-                                    <li>If exceeding limit:
-                                        <ul>
-                                            <li>Immediately notify your <strong>Tier 2/3 supervisor</strong></li>
-                                            <li>Document reason in <strong>shift log</strong></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="rule-card">
+                            <h4><i class="fas fa-user-clock"></i> Personal Time</h4>
+                            <p>You only get <strong>15 minutes per day</strong> for personal time. If you exceed this limit, immediately notify your Tier 2/3 or Manager.</p>
                         </div>
                         
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Floor Management</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li>When leaving the floor:
-                                        <ul>
-                                            <li>Notify <strong>at least one Tier 2/3 supervisor</strong></li>
-                                            <li>Update your <strong>status in Teams</strong></li>
-                                            <li>Maximum absence duration: <strong>10 minutes</strong></li>
-                                        </ul>
-                                    </li>
-                                    <li>For extended absences (>10 min), request formal break approval</li>
-                                </ul>
-                            </div>
+                        <div class="rule-card">
+                            <h4><i class="fas fa-walking"></i> Leaving the Floor</h4>
+                            <p>Always communicate with your Tier 2/3 or Manager when leaving the floor for any reason so we're aware of your location if a customer calls.</p>
                         </div>
                         
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Time Off Requests</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <ul>
-                                    <li>Submit all requests through <strong>SYCO Portal</strong> at least:
-                                        <ul>
-                                            <li><strong>2 weeks</strong> in advance for single days</li>
-                                            <li><strong>4 weeks</strong> for extended time off</li>
-                                        </ul>
-                                    </li>
-                                    <li>After submission:
-                                        <ul>
-                                            <li>Email manager with <strong>detailed reason</strong></li>
-                                            <li>Follow up within <strong>48 hours</strong> if no response</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="rule-card">
+                            <h4><i class="fas fa-calendar-minus"></i> Time Off Requests</h4>
+                            <p>Submit requests through <a href="https://www.libertyhomeguard.com/systemcontrol/admin/timeoff/manage" target="_blank">SYCO</a> at least <strong>2 days in advance</strong> and notify your manager with the reason.</p>
+                        </div>
+                        
+                        <div class="rule-card">
+                            <h4><i class="fas fa-mobile-alt"></i> Cellphone Usage</h4>
+                            <p>Permitted only when not on calls. During customer calls, refrain from phone use to maintain focus.</p>
+                        </div>
+                        
+                        <div class="rule-card">
+                            <h4><i class="fas fa-phone-volume"></i> Calls Goal</h4>
+                            <p>Minimum of <strong>15 calls per day</strong>. This is the baseline expectation for daily performance.</p>
+                        </div>
+                        
+                        <div class="rule-card">
+                            <h4><i class="fas fa-umbrella-beach"></i> Vacation Requests</h4>
+                            <p>Submit through SYCO at least <strong>2 weeks in advance</strong>. Approval may be denied during high season or for other valid reasons.</p>
                         </div>
                     </div>
                 </section>
@@ -627,133 +684,118 @@
                     <div class="section-header">
                         <h2><i class="fas fa-tasks"></i> Procedures</h2>
                         <div class="section-actions">
-                            <button class="btn btn-outline"><i class="fas fa-video"></i> Training Videos</button>
+                            <button class="btn btn-secondary btn-sm"><i class="fas fa-video"></i> Training Videos</button>
                         </div>
                     </div>
                     
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle"></i>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
                         <div>
                             <strong>Important:</strong> All procedures must be documented in the customer case file before submission for approval.
                         </div>
                     </div>
                     
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Push to Cancel Process</span>
-                                <i class="fas fa-chevron-down"></i>
+                    <div class="card">
+                        <h3>Push to Cancel</h3>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <h4>Customer Agreement</h4>
+                                <p>Confirm the customer agrees to the elevated refund and cancellation terms.</p>
                             </div>
-                            <div class="accordion-content">
-                                <div class="process-steps">
-                                    <div class="process-step">
-                                        <h4>Customer Agreement</h4>
-                                        <p>Confirm customer verbally agrees to cancellation terms and elevated refund amount.</p>
-                                    </div>
-                                    <div class="process-step">
-                                        <h4>Documentation</h4>
-                                        <p>Record all communication details in the case notes including:
-                                            <ul>
-                                                <li>Date/time of agreement</li>
-                                                <li>Refund amount approved</li>
-                                                <li>Customer confirmation method</li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                    <div class="process-step">
-                                        <h4>System Update</h4>
-                                        <p>Change status to <strong>"Pending Cancellation"</strong> and flag for manager review.</p>
-                                    </div>
-                                </div>
+                            <div class="process-step">
+                                <h4>Documentation</h4>
+                                <p>Record all details of the agreement in the case notes.</p>
+                            </div>
+                            <div class="process-step">
+                                <h4>System Update</h4>
+                                <p>Change the status to <strong>"Pending Cancellation"</strong> in the system.</p>
                             </div>
                         </div>
-                        
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Settlement & Release (S&R)</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    <div>
-                                        <strong>Critical:</strong> Incorrect month placement in the S&R sheet will delay processing by 5-7 business days.
-                                    </div>
-                                </div>
-                                
-                                <div class="process-steps">
-                                    <div class="process-step">
-                                        <h4>Agreement Finalization</h4>
-                                        <p>Ensure all terms are confirmed with customer including:
-                                            <ul>
-                                                <li>Exact settlement amount</li>
-                                                <li>Effective cancellation date</li>
-                                                <li>Any special conditions</li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                    <div class="process-step">
-                                        <h4>Sheet Placement</h4>
-                                        <p>Submit request in <strong>Retentions | BM Department: S&R Request Sheet</strong>:
-                                            <ul>
-                                                <li>Current month tab for immediate processing</li>
-                                                <li>Future month tab for delayed settlements</li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                    <div class="process-step">
-                                        <h4>Verification</h4>
-                                        <p>Double-check:
-                                            <ul>
-                                                <li>Customer ID accuracy</li>
-                                                <li>Policy number</li>
-                                                <li>Settlement amount matches case notes</li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Settlement & Release (S&R)</h3>
+                        <a href="https://docs.google.com/spreadsheets/d/1fnwL1MCdjLc7EsQxcdWEFxjYiIAPEMhRlcWEjr0lEaA/edit?gid=895634702#gid=895634702" class="btn btn-secondary btn-sm" target="_blank" style="margin-bottom: 15px;">
+                            <i class="fas fa-external-link-alt"></i> Open S&R Request Sheet
+                        </a>
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <div>
+                                <strong>Critical:</strong> Placement in the wrong month/section will delay processing by 5-7 business days.
                             </div>
                         </div>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <h4>Settlement Agreement</h4>
+                                <p>Confirm the exact settlement amount and terms with the customer.</p>
+                            </div>
+                            <div class="process-step">
+                                <h4>Sheet Submission</h4>
+                                <p>Submit request in the <strong>Retentions | BM Department: S&R Request sheet</strong> in the correct month section.</p>
+                            </div>
+                            <div class="process-step">
+                                <h4>Verification</h4>
+                                <p>Double-check all customer and policy details before submission.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Account Pitches</h3>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <h4>Claim Assessment</h4>
+                                <p>Verify the pitch applies only to the current claim issue (or next claim if applicable).</p>
+                            </div>
+                            <div class="process-step">
+                                <h4>Process Adjustment</h4>
+                                <p>Make the process easier and more lenient for the customer as appropriate.</p>
+                            </div>
+                            <div class="process-step">
+                                <h4>Documentation</h4>
+                                <p>Record all special handling instructions for future reference.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="agenda-statuses" class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-list-ul"></i> Agenda Statuses</h2>
+                        <a href="https://docs.google.com/spreadsheets/d/1qGQdx-9HP9T3QJBVxNm7-IYAs3-KHLVHmAboJ0C6lJM/edit?gid=0#gid=0" class="btn btn-secondary btn-sm" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Open Agenda
+                        </a>
+                    </div>
+                    
+                    <div class="status-grid">
+                        <div class="status-card pending">
+                            <h4><i class="fas fa-clock"></i> Pending</h4>
+                            <p>Default status when initially reaching out to customer and no agreement has been reached yet.</p>
+                        </div>
                         
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <span>Account Pitches</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="process-steps">
-                                    <div class="process-step">
-                                        <h4>Eligibility Assessment</h4>
-                                        <p>Verify:
-                                            <ul>
-                                                <li>Claim relates to current active issue</li>
-                                                <li>Customer has no more than 2 prior claims</li>
-                                                <li>Policy is in good standing</li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                    <div class="process-step">
-                                        <h4>Pitch Customization</h4>
-                                        <p>Tailor approach based on:
-                                            <ul>
-                                                <li>Customer tenure</li>
-                                                <li>Claim history</li>
-                                                <li>Previous interactions</li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                    <div class="process-step">
-                                        <h4>Documentation</h4>
-                                        <p>Record all details in:
-                                            <ul>
-                                                <li>Customer profile notes</li>
-                                                <li>Special handling instructions</li>
-                                                <li>Follow-up calendar</li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="status-card loss">
+                            <h4><i class="fas fa-times-circle"></i> Loss</h4>
+                            <p>Customer refuses to remove/update review. <strong>Cannot be used for BBB complaints</strong> without T2/3 or Manager approval.</p>
+                        </div>
+                        
+                        <div class="status-card success">
+                            <h4><i class="fas fa-check-circle"></i> Success</h4>
+                            <p>Customer agrees to update review but hasn't done it yet. Follow up required.</p>
+                        </div>
+                        
+                        <div class="status-card removed">
+                            <h4><i class="fas fa-check-double"></i> Removed</h4>
+                            <p>Review has been updated/removed. <strong>Note:</strong> If multiple reviews exist, all must be addressed before using this status.</p>
+                        </div>
+                        
+                        <div class="status-card reevaluate">
+                            <h4><i class="fas fa-redo"></i> Re-Evaluate Later</h4>
+                            <p>Used when claim is undergoing normal procedure or approach needs to be revised.</p>
+                        </div>
+                        
+                        <div class="status-card utr">
+                            <h4><i class="fas fa-phone-slash"></i> Unable To Reach (UTR)</h4>
+                            <p>After 5 unsuccessful contact attempts via phone, email, or SMS.</p>
                         </div>
                     </div>
                 </section>
@@ -762,99 +804,99 @@
                     <div class="section-header">
                         <h2><i class="fas fa-users"></i> Team Structure</h2>
                         <div class="section-actions">
-                            <button class="btn btn-outline"><i class="fas fa-phone-alt"></i> Contact All</button>
+                            <button class="btn btn-secondary btn-sm"><i class="fas fa-phone-alt"></i> Contact All</button>
                         </div>
                     </div>
                     
-                    <h3 style="margin-top: 20px;">Management</h3>
+                    <h3 style="margin-top: 20px; color: var(--primary);">Management</h3>
                     <div class="team-grid">
                         <div class="team-card">
-                            <div class="team-avatar" style="background-color: var(--primary-dark);">NG</div>
+                            <div class="team-avatar">NG</div>
                             <h4 class="team-name">Nino Green</h4>
                             <div class="team-role">Brand Management Manager</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x5432</div>
-                                <div><i class="fas fa-envelope"></i> n.green@company.com</div>
+                                <div><i class="fas fa-envelope"></i> nino.green@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Nino Green</div>
                             </div>
                         </div>
                     </div>
                     
-                    <h3 style="margin-top: 30px;">Tier 2 Supervisors</h3>
+                    <h3 style="margin-top: 30px; color: var(--primary);">Tier 2 Supervisors</h3>
                     <div class="team-grid">
                         <div class="team-card">
                             <div class="team-avatar">AS</div>
                             <h4 class="team-name">Anthony Smith</h4>
-                            <div class="team-role">Senior Complaint Specialist</div>
+                            <div class="team-role">Senior Director</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4321</div>
-                                <div><i class="fas fa-envelope"></i> a.smith@company.com</div>
+                                <div><i class="fas fa-envelope"></i> anthony.smith@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Anthony Smith</div>
                             </div>
                         </div>
                         <div class="team-card">
                             <div class="team-avatar">ES</div>
                             <h4 class="team-name">Eddy Sanchez</h4>
-                            <div class="team-role">Complaint Specialist</div>
+                            <div class="team-role">Senior Complaint Specialist</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4567</div>
-                                <div><i class="fas fa-envelope"></i> e.sanchez@company.com</div>
+                                <div><i class="fas fa-envelope"></i> eddy.sanchez@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Eddy Sanchez</div>
                             </div>
                         </div>
                         <div class="team-card">
                             <div class="team-avatar">MR</div>
                             <h4 class="team-name">Mike Rodriguez</h4>
-                            <div class="team-role">Complaint Specialist</div>
+                            <div class="team-role">Senior Operations Specialist</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4789</div>
-                                <div><i class="fas fa-envelope"></i> m.rodriguez@company.com</div>
+                                <div><i class="fas fa-envelope"></i> mike.rodriguez@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Mike Rodriguez</div>
                             </div>
                         </div>
                     </div>
                     
-                    <h3 style="margin-top: 30px;">Tier 1 Associates</h3>
+                    <h3 style="margin-top: 30px; color: var(--primary);">Tier 1 Associates</h3>
                     <div class="team-grid">
                         <div class="team-card">
                             <div class="team-avatar">AC</div>
                             <h4 class="team-name">Alex Collado</h4>
-                            <div class="team-role">Complaint Associate</div>
+                            <div class="team-role">Complaint Specialist</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4123</div>
-                                <div><i class="fas fa-envelope"></i> a.collado@company.com</div>
+                                <div><i class="fas fa-envelope"></i> alex.collado@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Alex Collado</div>
                             </div>
                         </div>
                         <div class="team-card">
                             <div class="team-avatar">JK</div>
                             <h4 class="team-name">Josh Kim</h4>
-                            <div class="team-role">Complaint Associate</div>
+                            <div class="team-role">Complaint Specialist</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4234</div>
-                                <div><i class="fas fa-envelope"></i> j.kim@company.com</div>
+                                <div><i class="fas fa-envelope"></i> josh.kim@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Josh Kim</div>
                             </div>
                         </div>
                         <div class="team-card">
                             <div class="team-avatar">NL</div>
                             <h4 class="team-name">Nigel Liloy</h4>
-                            <div class="team-role">Complaint Associate</div>
+                            <div class="team-role">Complaint Specialist</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4345</div>
-                                <div><i class="fas fa-envelope"></i> n.liloy@company.com</div>
+                                <div><i class="fas fa-envelope"></i> nigel.liloy@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Nigel Liloy</div>
                             </div>
                         </div>
                         <div class="team-card">
                             <div class="team-avatar">JF</div>
                             <h4 class="team-name">Jackie Flores</h4>
-                            <div class="team-role">Complaint Associate</div>
+                            <div class="team-role">Complaint Specialist</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4456</div>
-                                <div><i class="fas fa-envelope"></i> j.flores@company.com</div>
+                                <div><i class="fas fa-envelope"></i> jackie.flores@libertyhomeguard.comm</div>
+                                <div><i class="fas fa-phone"></i> Jackie Flores</div>
                             </div>
                         </div>
                         <div class="team-card">
                             <div class="team-avatar">EE</div>
                             <h4 class="team-name">Emi Estrella</h4>
-                            <div class="team-role">Complaint Associate</div>
+                            <div class="team-role">Complaint Specialist</div>
                             <div class="team-contact">
-                                <div><i class="fas fa-phone"></i> x4567</div>
-                                <div><i class="fas fa-envelope"></i> e.estrella@company.com</div>
+                                <div><i class="fas fa-envelope"></i> emi.estrella@libertyhomeguard.com</div>
+                                <div><i class="fas fa-phone"></i> Emi Estrella</div>
                             </div>
                         </div>
                     </div>
@@ -862,49 +904,29 @@
                 
                 <section id="assistance" class="section">
                     <div class="section-header">
-                        <h2><i class="fas fa-hands-helping"></i> Assistance Request Process</h2>
+                        <h2><i class="fas fa-question-circle"></i> Assistance Request</h2>
                     </div>
                     
                     <div class="process-steps">
                         <div class="process-step">
                             <h4>Initial Contact</h4>
-                            <p>Reach out to any available Tier 2 supervisor via:
+                            <p>First reach out to any available Tier 2 supervisor (Anthony Smith, Eddy Sanchez, or Mike Rodriguez) via:
                                 <ul>
                                     <li>Teams instant message</li>
                                     <li>Direct phone extension</li>
                                     <li>In-person if on-site</li>
                                 </ul>
                             </p>
-                            <p><strong>Response expectation:</strong> Within 15 minutes during normal hours</p>
                         </div>
                         <div class="process-step">
-                            <h4>Escalation Criteria</h4>
-                            <p>Request manager escalation when:
+                            <h4>Escalation Process</h4>
+                            <p>If the Tier 2 supervisor cannot resolve the issue, escalate to Manager (Nino Green) with:
                                 <ul>
-                                    <li>Issue requires policy exception</li>
-                                    <li>Potential financial impact exceeds $500</li>
-                                    <li>Customer threatens legal action</li>
-                                    <li>Tier 2 cannot resolve within 30 minutes</li>
+                                    <li>Detailed description of the issue</li>
+                                    <li>Steps already taken</li>
+                                    <li>Customer information</li>
                                 </ul>
                             </p>
-                        </div>
-                        <div class="process-step">
-                            <h4>Manager Escalation</h4>
-                            <p>For manager requests:
-                                <ul>
-                                    <li>Complete <strong>Escalation Form</strong> in SYCO</li>
-                                    <li>Include all relevant case details</li>
-                                    <li>Attach supporting documentation</li>
-                                    <li>Flag as <strong>Urgent</strong> if time-sensitive</li>
-                                </ul>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="alert alert-info" style="margin-top: 30px;">
-                        <i class="fas fa-headset"></i>
-                        <div>
-                            <strong>After Hours Support:</strong> For issues outside business hours, contact the on-call supervisor at <strong>555-0100</strong> (ext. 911 after 7pm).
                         </div>
                     </div>
                 </section>
@@ -912,34 +934,54 @@
         </div>
         
         <footer>
-            <p>Brand Management Complaint Portal &copy; 2023 | Version 2.1</p>
+            <p>Brand Management Complaint Portal &copy; 2025 | Version 3.0</p>
             <div class="quick-links">
                 <a href="#"><i class="fas fa-lock"></i> Privacy Policy</a>
                 <a href="#"><i class="fas fa-file-alt"></i> Terms of Use</a>
                 <a href="#"><i class="fas fa-question-circle"></i> Help Desk</a>
                 <a href="#"><i class="fas fa-bug"></i> Report Issue</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
             </div>
         </footer>
     </div>
     
     <script>
-        // Accordion functionality
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const isActive = item.classList.contains('active');
-                
-                // Close all items first
-                document.querySelectorAll('.accordion-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                
-                // Open current if it was closed
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            body.classList.add(savedTheme);
+        } else if (prefersDark) {
+            body.classList.add('dark');
+        }
+        
+        updateThemeIcon();
+        
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark')) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateThemeIcon();
         });
+        
+        function updateThemeIcon() {
+            if (body.classList.contains('dark')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
         
         // Smooth scrolling for navigation
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -961,15 +1003,30 @@
             });
         });
         
-        // Search functionality
-        const searchInput = document.querySelector('.search-box input');
-        searchInput.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                const searchTerm = this.value.toLowerCase();
-                alert('Search functionality would show results for: ' + searchTerm);
-                // In a real implementation, you would filter content here
-            }
+        // Set active nav item based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = '#' + section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
         });
+        
+        // Add RGB values for alert backgrounds
+        document.documentElement.style.setProperty('--primary-rgb', '37, 99, 235');
+        document.documentElement.style.setProperty('--warning-rgb', '245, 158, 11');
+        document.documentElement.style.setProperty('--danger-rgb', '220, 38, 38');
     </script>
 </body>
 </html>
